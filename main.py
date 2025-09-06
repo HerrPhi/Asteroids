@@ -1,12 +1,15 @@
 import pygame
 from constants import *
+from player import *
 
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-    game_clock = pygame.time.Clock()   #initialised Clock object
+    clock = pygame.time.Clock()   #initialised Clock object
     dt = 0  #delta t variable
+
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 
     run = True
     while run:
@@ -15,10 +18,11 @@ def main():
                 return
 
         screen.fill("black")
+        player.draw(screen)     #player is drawn after filling the screen but before flipping it
 
 
         pygame.display.flip()
-        dt = game_clock.tick(60)/1000
+        dt = clock.tick(60) / 1000
 
 
     print("Starting Asteroids!")
